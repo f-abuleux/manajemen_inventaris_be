@@ -13,6 +13,7 @@ import { PORT } from './config';
 import { ProductRouter } from './routers/product.router';
 
 // console.log('DB_URL:', process.env.DB_URL);
+console.log('Environment Variables:', process.env);
 console.log('Database URL:', process.env.DATABASE_URL);
 console.log('Current working directory:', process.cwd());
 console.log('Resolved path:', require.resolve('@/services/product.service'));
