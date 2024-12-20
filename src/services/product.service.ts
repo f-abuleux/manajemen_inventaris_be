@@ -18,7 +18,7 @@ export const createProductDetail = async ({ product_name, product_category, prod
                 product_category,
                 product_quantity,
                 product_price,
-                input_date,
+                input_date : `${input_date}T00:00:00.000Z`,
             }
         })
         return { createProduct }
@@ -56,7 +56,7 @@ export const updateProductDetailById = async ({
                 ...(product_category && { product_category }),
                 ...(product_quantity && { product_quantity }),
                 ...(product_price && { product_price }),
-                ...(input_date && { input_date }),
+                ...(input_date && { input_date : `${input_date}T00:00:00.000Z` }),
             },
         });
 

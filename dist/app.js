@@ -40,7 +40,7 @@ const express_1 = __importStar(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const path_1 = __importDefault(require("path"));
 const config_1 = require("./config");
-const product_router_1 = require("./src/routers/product.router");
+const product_router_1 = require("./routers/product.router");
 class App {
     constructor() {
         this.app = (0, express_1.default)();
@@ -55,7 +55,6 @@ class App {
         this.app.use('/api/public', express_1.default.static(path_1.default.join(__dirname, "../public")));
     }
     handleError() {
-        // not found
         this.app.use((req, res, next) => {
             if (req.path.includes('/api/')) {
                 res.status(404).send('Not found !');
@@ -64,7 +63,6 @@ class App {
                 next();
             }
         });
-        // error
         this.app.use((err, req, res, next) => {
             if (req.path.includes('/api/')) {
                 console.error('Error : ', err.stack);
