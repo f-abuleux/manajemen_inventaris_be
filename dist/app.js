@@ -42,6 +42,7 @@ const path_1 = __importDefault(require("path"));
 const config_1 = require("./config");
 const product_router_1 = require("./routers/product.router");
 // console.log('DB_URL:', process.env.DB_URL);
+console.log('Environment Variables:', process.env);
 console.log('Database URL:', process.env.DATABASE_URL);
 console.log('Current working directory:', process.cwd());
 console.log('Resolved path:', require.resolve('@/services/product.service'));
@@ -53,7 +54,20 @@ class App {
         this.handleError();
     }
     configure() {
-        this.app.use((0, cors_1.default)({ origin: ['https://manajemen-inventaris-fe.vercel.app/', "http://localhost:5173/"] }));
+        this.app.use((0, cors_1.default)({
+            origin: (origin, callback) => {
+                const allowedOrigins = [
+                    'https://manajemen-inventaris-fe.vercel.app',
+                    'http://localhost:5173'
+                ];
+                if (!origin || allowedOrigins.includes(origin)) {
+                    callback(null, true);
+                }
+                else {
+                    callback(new Error('Not allowed by CORS'));
+                }
+            }
+        }));
         this.app.use((0, express_1.json)());
         this.app.use((0, express_1.urlencoded)({ extended: true }));
         this.app.use('/api/public', express_1.default.static(path_1.default.join(__dirname, "../public")));

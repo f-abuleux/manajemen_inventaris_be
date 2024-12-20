@@ -30,7 +30,21 @@ export default class App {
     }
 
     private configure(): void {
-        this.app.use(cors({ origin: ['https://manajemen-inventaris-fe.vercel.app/', "http://localhost:5173/"] }));
+        this.app.use(cors({
+            origin: (origin, callback) => {
+                const allowedOrigins = [
+                    'https://manajemen-inventaris-fe.vercel.app',
+                    'http://localhost:5173'
+                ];
+
+                if (!origin || allowedOrigins.includes(origin)) {
+                    callback(null, true);
+                } else {
+                    callback(new Error('Not allowed by CORS'));
+                }
+            }
+        }));
+
         this.app.use(json());
         this.app.use(urlencoded({ extended: true }));
         this.app.use('/api/public', express.static(path.join(__dirname, "../public")));
@@ -56,8 +70,8 @@ export default class App {
             },
         );
     }
-    
-    
+
+
 
     private routes(): void {
         // const sampleRouter = new SampleRouter();
