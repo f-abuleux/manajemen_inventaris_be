@@ -12,7 +12,7 @@ import path from 'path';
 import { PORT } from './config';
 import { ProductRouter } from './routers/product.router';
 
-
+console.log('DB_URL:', process.env.DB_URL);
 export default class App {
     private app: Express;
 
@@ -50,6 +50,7 @@ export default class App {
             },
         );
     }
+    
 
     private routes(): void {
         // const sampleRouter = new SampleRouter();
