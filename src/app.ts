@@ -24,7 +24,7 @@ export default class App {
     }
 
     private configure(): void {
-        this.app.use(cors());
+        this.app.use(cors({ origin: ['https://manajemen-inventaris-fe.vercel.app/', "http://localhost:5173/"] }));
         this.app.use(json());
         this.app.use(urlencoded({ extended: true }));
         this.app.use('/api/public', express.static(path.join(__dirname, "../public")));
