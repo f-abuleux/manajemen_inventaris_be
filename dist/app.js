@@ -49,7 +49,7 @@ class App {
         this.handleError();
     }
     configure() {
-        this.app.use((0, cors_1.default)());
+        this.app.use((0, cors_1.default)({ origin: ['https://manajemen-inventaris-fe.vercel.app/', "http://localhost:5173/"] }));
         this.app.use((0, express_1.json)());
         this.app.use((0, express_1.urlencoded)({ extended: true }));
         this.app.use('/api/public', express_1.default.static(path_1.default.join(__dirname, "../public")));
