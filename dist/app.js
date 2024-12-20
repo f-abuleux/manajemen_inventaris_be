@@ -41,7 +41,8 @@ const cors_1 = __importDefault(require("cors"));
 const path_1 = __importDefault(require("path"));
 const config_1 = require("./config");
 const product_router_1 = require("./routers/product.router");
-console.log('DB_URL:', process.env.DB_URL);
+// console.log('DB_URL:', process.env.DB_URL);
+console.log('Database URL:', process.env.DATABASE_URL);
 class App {
     constructor() {
         this.app = (0, express_1.default)();
