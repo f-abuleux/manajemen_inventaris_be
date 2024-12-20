@@ -1,5 +1,7 @@
 import App from './app';
 import 'module-alias/register';
+import './module-alias';
+
 
 process.on('uncaughtException', (err) => {
     console.error('Uncaught Exception:', err);
